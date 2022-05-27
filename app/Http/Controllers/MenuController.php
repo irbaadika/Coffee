@@ -8,9 +8,17 @@ use App\Models\Menu;
 class MenuController extends Controller
 {
     public function index(){
+
+        $menus = Menu::latest();
+
+        if(request('search')){
+            $menus->where('title', 'like', '%' . request('search') . '%')
+            ->orWhere('desc', 'like', '%' . request('search') . '%');
+        }
+
         return view('menus',[
             "title" => "Menus",
-            "menus" => Menu::latest()->get()
+            "menus" => $menus->get()
         ]);
     }
 

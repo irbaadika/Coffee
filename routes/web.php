@@ -40,12 +40,6 @@ Route::get('/about', function () {
     ]);
 });
 
-Route::get('/promo', function () {
-    return view('promo',[
-        "title" => "Promo"
-    ]);
-});
-
 //single
 Route::get('/menus', [MenuController::class, 'index']);
 Route::get('/menus/{menu:slug}', [MenuController::class, 'show']);
